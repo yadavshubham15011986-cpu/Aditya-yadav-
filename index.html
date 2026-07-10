@@ -1,0 +1,784 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pinnacle Digital — Websites, SEO, Google Ads &amp; Meta Ads</title>
+<meta name="description" content="Pinnacle Digital builds websites and runs SEO, Google Ads and Meta Ads campaigns that turn clicks into customers.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#0B1B2B;
+    --navy-2:#122A44;
+    --blue:#2F6FED;
+    --blue-light:#5B8DF6;
+    --green:#17B978;
+    --amber:#F4B740;
+    --paper:#F5F7FA;
+    --paper-2:#FFFFFF;
+    --ink:#0B1B2B;
+    --slate:#5B6B82;
+    --slate-light:#8B98AC;
+    --line:#E3E8F0;
+    --radius:14px;
+    --maxw:1180px;
+    --shadow:0 20px 50px -20px rgba(11,27,43,0.25);
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Inter',sans-serif;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  h1,h2,h3,.display{
+    font-family:'Space Grotesk',sans-serif;
+    letter-spacing:-0.02em;
+    margin:0;
+  }
+  .mono{ font-family:'JetBrains Mono',monospace; letter-spacing:-0.01em; }
+  a{ color:inherit; text-decoration:none; }
+  img{ max-width:100%; display:block; }
+  ul{ margin:0; padding:0; list-style:none; }
+  .wrap{ max-width:var(--maxw); margin:0 auto; padding:0 24px; }
+  section{ position:relative; }
+
+  @media (prefers-reduced-motion: reduce){
+    *{ animation-duration:0.001ms !important; animation-iteration-count:1 !important; transition-duration:0.001ms !important; scroll-behavior:auto !important; }
+  }
+
+  :focus-visible{
+    outline:2px solid var(--green);
+    outline-offset:3px;
+    border-radius:4px;
+  }
+
+  /* ---------- NAV ---------- */
+  .nav{
+    position:sticky; top:0; z-index:200;
+    background:rgba(11,27,43,0.92);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid rgba(255,255,255,0.06);
+  }
+  .nav .wrap{
+    display:flex; align-items:center; justify-content:space-between;
+    height:72px;
+  }
+  .brand{
+    display:flex; align-items:center; gap:10px;
+    font-family:'Space Grotesk',sans-serif;
+    font-weight:700; font-size:1.15rem; color:#fff;
+  }
+  .brand-mark{
+    width:34px; height:34px; border-radius:9px;
+    background:linear-gradient(135deg,var(--blue),var(--green));
+    display:flex; align-items:center; justify-content:center;
+    font-family:'JetBrains Mono',monospace; font-weight:600; color:#fff; font-size:0.95rem;
+    flex-shrink:0;
+  }
+  .nav-links{
+    display:flex; align-items:center; gap:34px;
+  }
+  .nav-links a{
+    color:#C7D2E3; font-size:0.94rem; font-weight:500;
+    transition:color 0.2s ease;
+  }
+  .nav-links a:hover{ color:#fff; }
+  .nav-cta{
+    display:flex; align-items:center; gap:14px;
+  }
+  .btn{
+    display:inline-flex; align-items:center; justify-content:center; gap:8px;
+    padding:12px 22px;
+    border-radius:999px;
+    font-weight:600; font-size:0.92rem;
+    cursor:pointer; border:none;
+    transition:transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+    white-space:nowrap;
+  }
+  .btn-primary{
+    background:var(--green); color:#04241a;
+    box-shadow:0 10px 24px -8px rgba(23,185,120,0.55);
+  }
+  .btn-primary:hover{ transform:translateY(-2px); box-shadow:0 14px 30px -8px rgba(23,185,120,0.65); }
+  .btn-ghost{
+    background:transparent; color:#fff; border:1px solid rgba(255,255,255,0.25);
+  }
+  .btn-ghost:hover{ background:rgba(255,255,255,0.08); }
+  .btn-dark{ background:var(--navy); color:#fff; }
+  .btn-dark:hover{ transform:translateY(-2px); box-shadow:var(--shadow); }
+
+  .hamburger{
+    display:none; flex-direction:column; gap:5px; background:none; border:none; cursor:pointer; padding:8px;
+  }
+  .hamburger span{ width:22px; height:2px; background:#fff; display:block; transition:all 0.25s ease; }
+  .hamburger.open span:nth-child(1){ transform:translateY(7px) rotate(45deg); }
+  .hamburger.open span:nth-child(2){ opacity:0; }
+  .hamburger.open span:nth-child(3){ transform:translateY(-7px) rotate(-45deg); }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    background:radial-gradient(1100px 600px at 85% -10%, rgba(47,111,237,0.35), transparent 60%),
+               linear-gradient(180deg, var(--navy) 0%, var(--navy-2) 100%);
+    color:#fff;
+    padding:76px 0 0;
+    overflow:hidden;
+  }
+  .hero .wrap{
+    display:grid; grid-template-columns:1.05fr 0.95fr; gap:40px; align-items:center;
+    padding-bottom:60px;
+  }
+  .eyebrow{
+    display:inline-flex; align-items:center; gap:8px;
+    font-family:'JetBrains Mono',monospace; font-size:0.78rem; letter-spacing:0.06em; text-transform:uppercase;
+    color:var(--green); background:rgba(23,185,120,0.12); border:1px solid rgba(23,185,120,0.3);
+    padding:7px 14px; border-radius:999px; margin-bottom:22px;
+  }
+  .eyebrow::before{ content:''; width:6px; height:6px; border-radius:50%; background:var(--green); box-shadow:0 0 0 4px rgba(23,185,120,0.2); }
+  .hero h1{
+    font-size:clamp(2.1rem, 4.4vw, 3.4rem);
+    line-height:1.08;
+    font-weight:700;
+  }
+  .hero h1 .accent{ color:var(--green); }
+  .hero p.lead{
+    margin-top:20px; font-size:1.08rem; line-height:1.65; color:#B9C4D6; max-width:520px;
+  }
+  .hero-cta{ display:flex; gap:14px; margin-top:32px; flex-wrap:wrap; }
+  .hero-stats{
+    display:flex; gap:32px; margin-top:48px; flex-wrap:wrap;
+  }
+  .hero-stats div{ border-left:2px solid rgba(255,255,255,0.15); padding-left:14px; }
+  .hero-stats strong{ display:block; font-family:'JetBrains Mono',monospace; font-size:1.5rem; color:#fff; }
+  .hero-stats span{ font-size:0.82rem; color:#8FA0B8; }
+
+  /* signature: ascending growth line */
+  .graph-card{
+    background:rgba(255,255,255,0.04);
+    border:1px solid rgba(255,255,255,0.1);
+    border-radius:18px;
+    padding:22px 22px 10px;
+    backdrop-filter:blur(6px);
+  }
+  .graph-head{ display:flex; justify-content:space-between; align-items:center; margin-bottom:6px; }
+  .graph-head .g-title{ font-size:0.82rem; color:#9FB0C6; font-family:'JetBrains Mono',monospace; }
+  .graph-head .g-value{ font-family:'JetBrains Mono',monospace; color:var(--green); font-weight:600; font-size:1rem; }
+  svg.graph{ width:100%; height:auto; display:block; }
+  .graph-line{
+    fill:none; stroke:var(--green); stroke-width:2.6; stroke-linecap:round;
+    stroke-dasharray:520; stroke-dashoffset:520;
+    animation:draw 2.2s cubic-bezier(.4,0,.2,1) 0.3s forwards;
+  }
+  .graph-fill{ opacity:0; animation:fadein 1.2s ease 1.6s forwards; }
+  @keyframes draw{ to{ stroke-dashoffset:0; } }
+  @keyframes fadein{ to{ opacity:1; } }
+  .graph-dot{
+    fill:#fff; stroke:var(--green); stroke-width:3;
+    offset-path:path("M8,150 C60,150 60,120 100,110 C150,96 160,70 210,58 C260,46 270,90 320,66 C365,44 375,20 392,14");
+    animation:movealong 2.2s cubic-bezier(.4,0,.2,1) 0.3s forwards;
+  }
+  @keyframes movealong{ from{ offset-distance:0%; } to{ offset-distance:100%; } }
+  .graph-legend{ display:flex; justify-content:space-between; margin-top:2px; padding:0 2px 14px; }
+  .graph-legend span{ font-size:0.72rem; color:#728196; font-family:'JetBrains Mono',monospace; }
+
+  /* ---------- MARQUEE / SERVICES STRIP ---------- */
+  .strip{
+    background:var(--navy);
+    border-top:1px solid rgba(255,255,255,0.06);
+    padding:14px 0;
+    overflow:hidden;
+  }
+  .strip-track{
+    display:flex; gap:52px; white-space:nowrap; width:max-content;
+    animation:scroll 26s linear infinite;
+    font-family:'JetBrains Mono',monospace; font-size:0.82rem; color:#7C8CA3; letter-spacing:0.04em;
+  }
+  @keyframes scroll{ from{ transform:translateX(0);} to{ transform:translateX(-50%);} }
+
+  /* ---------- SECTION HEADERS ---------- */
+  .section-pad{ padding:96px 0; }
+  .section-head{ max-width:640px; margin-bottom:56px; }
+  .section-head .eyebrow{ color:var(--blue); background:rgba(47,111,237,0.1); border-color:rgba(47,111,237,0.25); }
+  .section-head .eyebrow::before{ background:var(--blue); box-shadow:0 0 0 4px rgba(47,111,237,0.18); }
+  .section-head h2{ font-size:clamp(1.7rem,3vw,2.4rem); font-weight:700; }
+  .section-head p{ margin-top:14px; color:var(--slate); font-size:1.03rem; line-height:1.6; }
+
+  /* ---------- SERVICES ---------- */
+  .services-grid{
+    display:grid; grid-template-columns:repeat(4,1fr); gap:20px;
+  }
+  .service-card{
+    background:var(--paper-2); border:1px solid var(--line); border-radius:var(--radius);
+    padding:30px 26px; transition:transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+  }
+  .service-card:hover{ transform:translateY(-6px); box-shadow:var(--shadow); border-color:transparent; }
+  .service-icon{
+    width:46px; height:46px; border-radius:12px;
+    display:flex; align-items:center; justify-content:center;
+    margin-bottom:20px; font-size:1.3rem;
+  }
+  .ic-1{ background:rgba(47,111,237,0.12); }
+  .ic-2{ background:rgba(23,185,120,0.12); }
+  .ic-3{ background:rgba(244,183,64,0.16); }
+  .ic-4{ background:rgba(233,64,87,0.12); }
+  .service-card h3{ font-size:1.12rem; font-weight:600; margin-bottom:10px; }
+  .service-card p{ font-size:0.92rem; color:var(--slate); line-height:1.6; margin:0 0 16px; }
+  .service-card ul li{
+    font-size:0.85rem; color:var(--ink); padding-left:18px; position:relative; margin-bottom:6px;
+  }
+  .service-card ul li::before{
+    content:'→'; position:absolute; left:0; color:var(--green); font-weight:600;
+  }
+
+  /* ---------- PROCESS ---------- */
+  .process{ background:var(--paper-2); }
+  .process-grid{
+    display:grid; grid-template-columns:repeat(4,1fr); gap:0;
+    border:1px solid var(--line); border-radius:var(--radius); overflow:hidden;
+  }
+  .process-step{
+    padding:34px 26px; border-right:1px solid var(--line); position:relative;
+  }
+  .process-step:last-child{ border-right:none; }
+  .process-step .num{
+    font-family:'JetBrains Mono',monospace; color:var(--slate-light); font-size:0.85rem; margin-bottom:18px; display:block;
+  }
+  .process-step h3{ font-size:1.02rem; font-weight:600; margin-bottom:10px; }
+  .process-step p{ font-size:0.88rem; color:var(--slate); line-height:1.55; margin:0; }
+
+  /* ---------- STATS BAND ---------- */
+  .stats-band{
+    background:linear-gradient(120deg, var(--blue) 0%, #234ea3 100%);
+    color:#fff;
+  }
+  .stats-grid{
+    display:grid; grid-template-columns:repeat(4,1fr); gap:20px; text-align:center;
+  }
+  .stat strong{ display:block; font-family:'JetBrains Mono',monospace; font-size:2.1rem; }
+  .stat span{ font-size:0.85rem; color:#D9E4FA; }
+
+  /* ---------- PRICING ---------- */
+  .pricing-grid{
+    display:grid; grid-template-columns:repeat(3,1fr); gap:22px; align-items:stretch;
+  }
+  .price-card{
+    background:var(--paper-2); border:1px solid var(--line); border-radius:var(--radius);
+    padding:32px 28px; display:flex; flex-direction:column;
+  }
+  .price-card.featured{
+    background:var(--navy); color:#fff; border-color:var(--navy); transform:scale(1.03);
+    box-shadow:var(--shadow);
+  }
+  .price-card .tag{ font-family:'JetBrains Mono',monospace; font-size:0.78rem; color:var(--blue); text-transform:uppercase; letter-spacing:0.05em; }
+  .price-card.featured .tag{ color:var(--green); }
+  .price-card h3{ font-size:1.3rem; font-weight:600; margin:10px 0 4px; }
+  .price-card .price{ font-family:'JetBrains Mono',monospace; font-size:2rem; font-weight:600; margin:14px 0; }
+  .price-card .price sup{ font-size:0.9rem; font-weight:500; color:var(--slate); }
+  .price-card.featured .price sup{ color:#9FB0C6; }
+  .price-card ul{ flex:1; margin:18px 0 26px; }
+  .price-card ul li{
+    font-size:0.9rem; padding:8px 0; border-top:1px solid var(--line); display:flex; gap:10px; align-items:flex-start;
+  }
+  .price-card.featured ul li{ border-top:1px solid rgba(255,255,255,0.12); }
+  .price-card ul li::before{ content:'✓'; color:var(--green); font-weight:700; }
+  .price-card .btn{ width:100%; }
+
+  /* ---------- TESTIMONIALS ---------- */
+  .testimonials{ background:var(--paper-2); }
+  .t-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:20px; }
+  .t-card{
+    background:var(--paper); border:1px solid var(--line); border-radius:var(--radius); padding:28px;
+  }
+  .t-card .stars{ color:var(--amber); font-size:0.9rem; margin-bottom:14px; letter-spacing:2px; }
+  .t-card p{ font-size:0.94rem; line-height:1.6; color:var(--ink); margin:0 0 20px; }
+  .t-who{ display:flex; align-items:center; gap:12px; }
+  .t-avatar{
+    width:38px; height:38px; border-radius:50%; background:linear-gradient(135deg,var(--blue),var(--green));
+    display:flex; align-items:center; justify-content:center; color:#fff; font-weight:600; font-size:0.85rem; font-family:'Space Grotesk',sans-serif;
+  }
+  .t-who strong{ font-size:0.88rem; display:block; }
+  .t-who span{ font-size:0.78rem; color:var(--slate); }
+
+  /* ---------- CTA BAND ---------- */
+  .cta-band{
+    background:linear-gradient(135deg, var(--navy), #16324f);
+    color:#fff; text-align:center;
+    padding:80px 24px;
+    border-radius:24px;
+    margin:0 24px;
+  }
+  .cta-band h2{ font-size:clamp(1.6rem,3vw,2.2rem); margin-bottom:14px; }
+  .cta-band p{ color:#B9C4D6; max-width:480px; margin:0 auto 30px; }
+  .cta-actions{ display:flex; gap:14px; justify-content:center; flex-wrap:wrap; }
+
+  /* ---------- FOOTER ---------- */
+  footer{ background:var(--navy); color:#8FA0B8; padding:56px 0 26px; margin-top:96px; }
+  .footer-grid{ display:grid; grid-template-columns:1.4fr 1fr 1fr 1fr; gap:36px; padding-bottom:40px; border-bottom:1px solid rgba(255,255,255,0.08); }
+  .footer-grid h4{ color:#fff; font-size:0.9rem; margin-bottom:16px; font-weight:600; }
+  .footer-grid ul li{ margin-bottom:10px; }
+  .footer-grid ul li a{ font-size:0.88rem; color:#8FA0B8; transition:color 0.2s ease; }
+  .footer-grid ul li a:hover{ color:#fff; }
+  .footer-brand p{ font-size:0.88rem; line-height:1.6; margin:14px 0 0; max-width:280px; }
+  .foot-bottom{
+    display:flex; justify-content:space-between; align-items:center; padding-top:24px; font-size:0.8rem; flex-wrap:wrap; gap:10px;
+  }
+
+  /* ---------- FLOATING CONTACT TOGGLE ---------- */
+  .contact-fab{
+    position:fixed; right:22px; bottom:22px; z-index:500;
+    display:flex; flex-direction:column; align-items:flex-end; gap:12px;
+  }
+  .fab-options{
+    display:flex; flex-direction:column; gap:12px; margin-bottom:2px;
+    transform-origin:bottom right;
+  }
+  .fab-option{
+    display:flex; align-items:center; gap:10px;
+    background:#fff; color:var(--ink);
+    padding:11px 18px 11px 14px; border-radius:999px;
+    box-shadow:0 12px 30px -10px rgba(11,27,43,0.4);
+    font-size:0.88rem; font-weight:600;
+    opacity:0; transform:translateY(10px) scale(0.9); pointer-events:none;
+    transition:opacity 0.22s ease, transform 0.22s ease;
+    white-space:nowrap;
+  }
+  .contact-fab.open .fab-option{ opacity:1; transform:translateY(0) scale(1); pointer-events:auto; }
+  .contact-fab.open .fab-option:nth-child(1){ transition-delay:0.06s; }
+  .contact-fab.open .fab-option:nth-child(2){ transition-delay:0s; }
+  .fab-option .icon-circle{
+    width:30px; height:30px; border-radius:50%; display:flex; align-items:center; justify-content:center; flex-shrink:0;
+  }
+  .fab-option.wa .icon-circle{ background:#25D366; color:#fff; }
+  .fab-option.call .icon-circle{ background:var(--blue); color:#fff; }
+
+  .fab-toggle{
+    width:62px; height:62px; border-radius:50%; border:none; cursor:pointer;
+    background:var(--green); color:#04241a;
+    display:flex; align-items:center; justify-content:center;
+    box-shadow:0 16px 34px -10px rgba(23,185,120,0.6);
+    position:relative;
+    transition:transform 0.25s ease, background 0.25s ease;
+  }
+  .fab-toggle:hover{ transform:translateY(-2px); }
+  .fab-toggle::after{
+    content:''; position:absolute; inset:-6px; border-radius:50%;
+    border:2px solid rgba(23,185,120,0.4);
+    animation:pulse-ring 2.4s ease-out infinite;
+  }
+  @keyframes pulse-ring{
+    0%{ transform:scale(0.9); opacity:0.8; }
+    100%{ transform:scale(1.35); opacity:0; }
+  }
+  .fab-toggle svg{ width:26px; height:26px; transition:opacity 0.15s ease, transform 0.15s ease; position:absolute; }
+  .fab-toggle .icon-close{ opacity:0; transform:rotate(-45deg) scale(0.6); }
+  .contact-fab.open .fab-toggle .icon-plus{ opacity:0; transform:rotate(45deg) scale(0.6); }
+  .contact-fab.open .fab-toggle .icon-close{ opacity:1; transform:rotate(0) scale(1); }
+  .contact-fab.open .fab-toggle{ background:#fff; }
+
+  /* ---------- MOBILE ---------- */
+  @media (max-width:980px){
+    .services-grid, .process-grid, .stats-grid, .pricing-grid, .t-grid{ grid-template-columns:repeat(2,1fr); }
+    .process-step{ border-bottom:1px solid var(--line); }
+    .process-step:nth-child(2){ border-right:none; }
+    .price-card.featured{ transform:none; }
+    .hero .wrap{ grid-template-columns:1fr; }
+    .footer-grid{ grid-template-columns:1fr 1fr; }
+  }
+  @media (max-width:720px){
+    .nav-links{
+      position:fixed; top:72px; left:0; right:0; bottom:0;
+      background:var(--navy); flex-direction:column; align-items:flex-start; gap:0;
+      padding:20px 24px; transform:translateX(100%); transition:transform 0.3s ease;
+      overflow-y:auto;
+    }
+    .nav-links.open{ transform:translateX(0); }
+    .nav-links a{ width:100%; padding:16px 0; border-bottom:1px solid rgba(255,255,255,0.08); font-size:1rem; }
+    .nav-cta .btn-ghost{ display:none; }
+    .hamburger{ display:flex; }
+    .services-grid, .process-grid, .stats-grid, .pricing-grid, .t-grid{ grid-template-columns:1fr; }
+    .process-step{ border-right:none !important; }
+    .hero-stats{ gap:22px; }
+    .cta-band{ margin:0 12px; padding:56px 20px; }
+    .footer-grid{ grid-template-columns:1fr; gap:28px; }
+    .foot-bottom{ flex-direction:column; align-items:flex-start; }
+    .section-pad{ padding:64px 0; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ================= NAV ================= -->
+<nav class="nav">
+  <div class="wrap">
+    <a href="#top" class="brand"><span class="brand-mark">PD</span>Pinnacle Digital</a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#services">Services</a></li>
+      <li><a href="#process">Process</a></li>
+      <li><a href="#pricing">Pricing</a></li>
+      <li><a href="#testimonials">Reviews</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <div class="nav-cta">
+      <a href="#contact" class="btn btn-ghost">Get a quote</a>
+      <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<!-- ================= HERO ================= -->
+<header class="hero" id="top">
+  <div class="wrap">
+    <div>
+      <span class="eyebrow">Websites · SEO · Google Ads · Meta Ads</span>
+      <h1>Turn search traffic and social scrolls into <span class="accent">paying customers.</span></h1>
+      <p class="lead">Pinnacle Digital designs fast, conversion-ready websites and runs the SEO, Google Ads and Meta Ads campaigns that put them in front of buyers — all managed under one roof.</p>
+      <div class="hero-cta">
+        <a href="#contact" class="btn btn-primary">Book a free audit</a>
+        <a href="https://wa.me/919770488168?text=Hi%20Pinnacle%20Digital%2C%20I%27d%20like%20to%20know%20more%20about%20your%20services." target="_blank" rel="noopener" class="btn btn-ghost">Chat on WhatsApp</a>
+      </div>
+      <div class="hero-stats">
+        <div><strong class="mono">180+</strong><span>Campaigns launched</span></div>
+        <div><strong class="mono">4.2x</strong><span>Avg. ROAS delivered</span></div>
+        <div><strong class="mono">63</strong><span>Websites shipped</span></div>
+      </div>
+    </div>
+
+    <div class="graph-card">
+      <div class="graph-head">
+        <span class="g-title">ORGANIC + PAID TRAFFIC — 90 DAYS</span>
+        <span class="g-value">▲ 214%</span>
+      </div>
+      <svg class="graph" viewBox="0 0 400 170" preserveAspectRatio="none">
+        <defs>
+          <linearGradient id="fillGrad" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#17B978" stop-opacity="0.35"/>
+            <stop offset="100%" stop-color="#17B978" stop-opacity="0"/>
+          </linearGradient>
+        </defs>
+        <path class="graph-fill" fill="url(#fillGrad)" d="M8,150 C60,150 60,120 100,110 C150,96 160,70 210,58 C260,46 270,90 320,66 C365,44 375,20 392,14 L392,170 L8,170 Z"/>
+        <path class="graph-line" d="M8,150 C60,150 60,120 100,110 C150,96 160,70 210,58 C260,46 270,90 320,66 C365,44 375,20 392,14"/>
+        <circle class="graph-dot" r="5" cx="0" cy="0"/>
+      </svg>
+      <div class="graph-legend">
+        <span>WEEK 1</span><span>WEEK 6</span><span>WEEK 13</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="strip">
+    <div class="strip-track" aria-hidden="true">
+      <span>WEBSITE DESIGN &amp; DEVELOPMENT</span><span>SEARCH ENGINE OPTIMIZATION</span><span>GOOGLE ADS MANAGEMENT</span><span>META ADS — FACEBOOK &amp; INSTAGRAM</span><span>LANDING PAGE CRO</span>
+      <span>WEBSITE DESIGN &amp; DEVELOPMENT</span><span>SEARCH ENGINE OPTIMIZATION</span><span>GOOGLE ADS MANAGEMENT</span><span>META ADS — FACEBOOK &amp; INSTAGRAM</span><span>LANDING PAGE CRO</span>
+    </div>
+  </div>
+</header>
+
+<!-- ================= SERVICES ================= -->
+<section class="section-pad" id="services">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">What we do</span>
+      <h2>Four services. One growth engine.</h2>
+      <p>Every service is built to feed the next — your website converts what our ads and SEO bring in.</p>
+    </div>
+    <div class="services-grid">
+
+      <div class="service-card">
+        <div class="service-icon ic-1">🖥️</div>
+        <h3>Website Selling</h3>
+        <p>Custom, mobile-first websites built to load fast and convert visitors into leads.</p>
+        <ul>
+          <li>Custom design, no templates</li>
+          <li>E-commerce &amp; booking ready</li>
+          <li>Speed &amp; mobile optimized</li>
+        </ul>
+      </div>
+
+      <div class="service-card">
+        <div class="service-icon ic-2">📈</div>
+        <h3>SEO</h3>
+        <p>Rank higher on Google with technical fixes, content and link building that compound over time.</p>
+        <ul>
+          <li>Keyword &amp; competitor research</li>
+          <li>On-page &amp; technical SEO</li>
+          <li>Monthly ranking reports</li>
+        </ul>
+      </div>
+
+      <div class="service-card">
+        <div class="service-icon ic-3">🔍</div>
+        <h3>Google Ads</h3>
+        <p>Search, Shopping and Display campaigns built around a target cost-per-lead, not guesswork.</p>
+        <ul>
+          <li>Search &amp; Shopping campaigns</li>
+          <li>Conversion tracking setup</li>
+          <li>Weekly bid optimization</li>
+        </ul>
+      </div>
+
+      <div class="service-card">
+        <div class="service-icon ic-4">📱</div>
+        <h3>Meta Ads</h3>
+        <p>Facebook &amp; Instagram campaigns with creative, targeting and retargeting that lower your CPA.</p>
+        <ul>
+          <li>Facebook &amp; Instagram ads</li>
+          <li>Creative testing &amp; retargeting</li>
+          <li>Pixel &amp; audience setup</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ================= PROCESS ================= -->
+<section class="section-pad process" id="process">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">How we work</span>
+      <h2>From audit to scale, in four steps.</h2>
+      <p>A fixed process so you always know what's happening with your budget and your site.</p>
+    </div>
+    <div class="process-grid">
+      <div class="process-step">
+        <span class="num">01 / Audit</span>
+        <h3>Free audit</h3>
+        <p>We review your site, rankings and ad accounts to find the fastest wins.</p>
+      </div>
+      <div class="process-step">
+        <span class="num">02 / Strategy</span>
+        <h3>Build the plan</h3>
+        <p>A written plan covering the site, keywords, budgets and target cost-per-lead.</p>
+      </div>
+      <div class="process-step">
+        <span class="num">03 / Launch</span>
+        <h3>Build &amp; launch</h3>
+        <p>Your website goes live and campaigns launch on Google and Meta together.</p>
+      </div>
+      <div class="process-step">
+        <span class="num">04 / Scale</span>
+        <h3>Optimize &amp; scale</h3>
+        <p>Weekly tuning of bids, creative and pages, with a monthly report you can read.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= STATS BAND ================= -->
+<section class="stats-band">
+  <div class="wrap section-pad" style="padding-top:64px; padding-bottom:64px;">
+    <div class="stats-grid">
+      <div class="stat"><strong>63+</strong><span>Websites launched</span></div>
+      <div class="stat"><strong>180+</strong><span>Ad campaigns managed</span></div>
+      <div class="stat"><strong>4.2x</strong><span>Average return on ad spend</span></div>
+      <div class="stat"><strong>92%</strong><span>Clients retained past 6 months</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= PRICING ================= -->
+<section class="section-pad" id="pricing">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">Packages</span>
+      <h2>Simple pricing, no lock-in contracts.</h2>
+      <p>Every plan can mix and match website, SEO, Google Ads and Meta Ads work. Message us for a custom quote.</p>
+    </div>
+    <div class="pricing-grid">
+
+      <div class="price-card">
+        <span class="tag">Starter</span>
+        <h3>Website Only</h3>
+        <div class="price">₹14,999<sup>/ one-time</sup></div>
+        <ul>
+          <li>5-page responsive website</li>
+          <li>Mobile &amp; speed optimized</li>
+          <li>Basic on-page SEO setup</li>
+          <li>1 round of revisions</li>
+        </ul>
+        <a href="#contact" class="btn btn-dark">Choose starter</a>
+      </div>
+
+      <div class="price-card featured">
+        <span class="tag">Most popular</span>
+        <h3>Growth</h3>
+        <div class="price">₹24,999<sup>/ month</sup></div>
+        <ul>
+          <li>Everything in Starter</li>
+          <li>Full SEO management</li>
+          <li>Google Ads campaign setup</li>
+          <li>Monthly performance report</li>
+        </ul>
+        <a href="#contact" class="btn btn-primary">Choose growth</a>
+      </div>
+
+      <div class="price-card">
+        <span class="tag">Full funnel</span>
+        <h3>Scale</h3>
+        <div class="price">₹39,999<sup>/ month</sup></div>
+        <ul>
+          <li>Everything in Growth</li>
+          <li>Google Ads + Meta Ads</li>
+          <li>Landing page A/B testing</li>
+          <li>Dedicated account manager</li>
+        </ul>
+        <a href="#contact" class="btn btn-dark">Choose scale</a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ================= TESTIMONIALS ================= -->
+<section class="section-pad testimonials" id="testimonials">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">Client results</span>
+      <h2>What clients say after 90 days.</h2>
+    </div>
+    <div class="t-grid">
+      <div class="t-card">
+        <div class="stars">★★★★★</div>
+        <p>Our new site and Google Ads together cut our cost-per-lead by more than half in the first two months.</p>
+        <div class="t-who">
+          <div class="t-avatar">RS</div>
+          <div><strong>Ravi Sharma</strong><span>Interior Studio Owner</span></div>
+        </div>
+      </div>
+      <div class="t-card">
+        <div class="stars">★★★★★</div>
+        <p>SEO rankings for our main keywords went from page 3 to the top 5 results within a quarter.</p>
+        <div class="t-who">
+          <div class="t-avatar">AN</div>
+          <div><strong>Aisha Noor</strong><span>Clinic Manager</span></div>
+        </div>
+      </div>
+      <div class="t-card">
+        <div class="stars">★★★★★</div>
+        <p>Meta Ads retargeting alone brought back enough repeat buyers to cover the whole month's ad budget.</p>
+        <div class="t-who">
+          <div class="t-avatar">MK</div>
+          <div><strong>Manoj Kumar</strong><span>D2C Founder</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CTA ================= -->
+<section id="contact" style="padding-bottom:96px;">
+  <div class="cta-band">
+    <h2>Ready to grow with a plan, not guesswork?</h2>
+    <p>Message us on WhatsApp or call directly — we usually reply within the hour.</p>
+    <div class="cta-actions">
+      <a href="https://wa.me/919770488168?text=Hi%20Pinnacle%20Digital%2C%20I%27d%20like%20a%20free%20audit%20of%20my%20website%20and%20ads." target="_blank" rel="noopener" class="btn btn-primary">Message on WhatsApp</a>
+      <a href="tel:+919770488168" class="btn btn-ghost">Call 97704 88168</a>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FOOTER ================= -->
+<footer>
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="#top" class="brand"><span class="brand-mark">PD</span>Pinnacle Digital</a>
+        <p>Websites, SEO, Google Ads and Meta Ads — managed as one growth engine for small and mid-size businesses.</p>
+      </div>
+      <div>
+        <h4>Services</h4>
+        <ul>
+          <li><a href="#services">Website Selling</a></li>
+          <li><a href="#services">SEO</a></li>
+          <li><a href="#services">Google Ads</a></li>
+          <li><a href="#services">Meta Ads</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Company</h4>
+        <ul>
+          <li><a href="#process">Our process</a></li>
+          <li><a href="#pricing">Pricing</a></li>
+          <li><a href="#testimonials">Reviews</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <ul>
+          <li><a href="tel:+919770488168">Call 97704 88168</a></li>
+          <li><a href="https://wa.me/919770488168" target="_blank" rel="noopener">WhatsApp us</a></li>
+          <li><a href="mailto:hello@pinnacledigital.example">hello@pinnacledigital.example</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 Pinnacle Digital. All rights reserved.</span>
+      <span>Websites · SEO · Google Ads · Meta Ads</span>
+    </div>
+  </div>
+</footer>
+
+<!-- ================= FLOATING CALL / WHATSAPP TOGGLE ================= -->
+<div class="contact-fab" id="contactFab">
+  <div class="fab-options">
+    <a class="fab-option call" href="tel:+919770488168">
+      <span class="icon-circle">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.5.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.6 21 3 13.4 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.2.2 2.4.6 3.5.1.4 0 .8-.2 1L6.6 10.8z" fill="white"/></svg>
+      </span>
+      Call 97704 88168
+    </a>
+    <a class="fab-option wa" href="https://wa.me/919770488168?text=Hi%20Pinnacle%20Digital%2C%20I%27d%20like%20to%20know%20more%20about%20your%20services." target="_blank" rel="noopener">
+      <span class="icon-circle">
+        <svg width="16" height="16" viewBox="0 0 32 32" fill="white"><path d="M16 3C9 3 3.2 8.8 3.2 15.8c0 2.5.7 4.8 1.9 6.8L3 29l6.6-2c1.9 1 4.1 1.6 6.4 1.6 7 0 12.8-5.8 12.8-12.8S23 3 16 3zm0 23.2c-2.1 0-4.1-.6-5.8-1.6l-.4-.2-3.9 1.2 1.2-3.8-.3-.4c-1.1-1.7-1.7-3.7-1.7-5.8 0-5.8 4.7-10.5 10.5-10.5s10.6 4.7 10.6 10.5S21.8 26.2 16 26.2zm5.8-7.9c-.3-.2-1.9-1-2.1-1.1-.3-.1-.5-.2-.7.2-.2.3-.8 1.1-1 1.3-.2.2-.4.3-.7.1-.3-.2-1.4-.5-2.6-1.6-1-.9-1.6-2-1.8-2.3-.2-.3 0-.5.1-.7.1-.1.3-.4.5-.5.2-.2.2-.3.3-.5.1-.2.1-.4 0-.6-.1-.2-.7-1.7-1-2.3-.3-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.4s1.1 2.8 1.2 3c.1.2 2.1 3.2 5.1 4.5.7.3 1.3.5 1.7.6.7.2 1.4.2 1.9.1.6-.1 1.9-.8 2.1-1.5.3-.7.3-1.3.2-1.5-.1-.1-.3-.2-.6-.4z"/></svg>
+      </span>
+      WhatsApp us
+    </a>
+  </div>
+  <button class="fab-toggle" id="fabToggle" aria-label="Open contact options" aria-expanded="false">
+    <svg class="icon-plus" viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12h14" stroke="#04241a" stroke-width="2.4" stroke-linecap="round"/></svg>
+    <svg class="icon-close" viewBox="0 0 24 24" fill="none"><path d="M6 6l12 12M18 6L6 18" stroke="#0B1B2B" stroke-width="2.4" stroke-linecap="round"/></svg>
+  </button>
+</div>
+
+<script>
+  // mobile nav toggle
+  const hamburger = document.getElementById('hamburger');
+  const navLinks = document.getElementById('navLinks');
+  hamburger.addEventListener('click', () => {
+    const isOpen = navLinks.classList.toggle('open');
+    hamburger.classList.toggle('open', isOpen);
+    hamburger.setAttribute('aria-expanded', isOpen);
+  });
+  navLinks.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      navLinks.classList.remove('open');
+      hamburger.classList.remove('open');
+      hamburger.setAttribute('aria-expanded', 'false');
+    });
+  });
+
+  // call / whatsapp floating toggle
+  const fab = document.getElementById('contactFab');
+  const fabToggle = document.getElementById('fabToggle');
+  fabToggle.addEventListener('click', () => {
+    const isOpen = fab.classList.toggle('open');
+    fabToggle.setAttribute('aria-expanded', isOpen);
+    fabToggle.setAttribute('aria-label', isOpen ? 'Close contact options' : 'Open contact options');
+  });
+  document.addEventListener('click', (e) => {
+    if (!fab.contains(e.target)) {
+      fab.classList.remove('open');
+      fabToggle.setAttribute('aria-expanded', 'false');
+    }
+  });
+</script>
+
+</body>
+</html>
